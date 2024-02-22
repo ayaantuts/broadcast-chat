@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+:root {
+    --primary: #48dbfb;
+    
+    color-scheme: light dark;
+    font-size: clamp(1rem, 1.05vw, 2.5rem);
+}
+
+h1 {
+    position: relative;
+    font-size: 2.5rem;
+    text-align: center;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: 75%;
+        height: .25rem;
+        background-color: var(--primary);
+    }
+    &::before {
+        top: 0;
+        left: -.5rem;
+    }
+    &::after {
+        bottom: 0;
+        right: .5rem;
+    }
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2rem 8rem;
+
+    & > :is(input, button) {
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid;
+        color: var(--primary);
+        padding: 1rem 4rem;
+        font-size: 1.25rem;
+    }
+
+    & > button {
+        cursor: pointer;
+        transition: .4s ease-in-out;
+
+        &:hover {
+            background-color: var(--primary);
+            border: 0;
+        }
+    }
+}
+
+#chat:not(:empty) {
+    max-height: 40rem;
+    overflow-y: auto;
+    padding: 4rem 4rem 10rem;
+    margin-inline: auto;
+    view-transition-name: chat;
+
+    & > :is(.sender, .reciever) {
+        padding: 2rem 4rem;
+        max-width: 60%;
+        font-size: 1.125rem;
+        margin: 2rem 4rem;
+        border-radius: 2rem;
+    }
+
+    & > .sender {
+        background-color: #48dbfbAA;
+        text-align: end;
+        margin-inline-start: auto;
+    }
+    
+    & > .reciever {
+        background-color: #24252AAA;
+        text-align: start;
+        margin-inline-end: auto;
+    }
+}
+
+::view-transition-old(chat),
+::view-transition-new(chat) {
+    transition: all .5s;
+}
+
+::view-transition-old(chat) {
+    translate: 0 -1rem;
+}
+
+::view-transition-new(chat) {
+    translate: 0 0;
+}
